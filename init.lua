@@ -219,6 +219,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Auto open NeoTree on startup
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Auto open NeoTree on startup',
+  callback = function()
+    -- Only attempt to open NeoTree if it's available and no file has been loaded yet
+    local neo_tree_available, _ = pcall(require, 'neo-tree')
+    if neo_tree_available then
+      -- Open NeoTree on startup only for empty buffers (no file loaded)
+      if vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_option(0, 'buftype') == '' then
+        vim.defer_fn(function()
+          vim.cmd('Neotree action=show reveal')
+          -- Ensure we return to normal mode and focus to the main window
+          vim.cmd('normal! <C-w>p')
+        end, 50)
+      end
+    end
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
