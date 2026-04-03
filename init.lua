@@ -1053,6 +1053,21 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+  {
+    'kdheepak/lazygit.nvim',
+    -- optional for floating window (needs Nerd Font)
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      {
+        '<leader>gg',
+        '<cmd>LazyGit<cr>',
+        desc = 'LazyGit',
+      },
+    },
+    event = 'BufRead',
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
