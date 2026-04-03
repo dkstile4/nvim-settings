@@ -730,13 +730,13 @@ require('lazy').setup({
       -- `mason` had to be setup earlier: to configure its options see the
       -- `dependencies` table for `nvim-lspconfig` above.
       --
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+       -- You can add other tools here that you want Mason to install
+       -- for you, so that they are available from within Neovim.
+       local ensure_installed = vim.tbl_keys(servers or {})
+       vim.list_extend(ensure_installed, {
+         'stylua', -- Used to format Lua code
+       })
+       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
@@ -933,7 +933,14 @@ require('lazy').setup({
     -- Recommended for `ask()` and `select()`.
     -- Required for `snacks` provider.
     ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-    { "folke/snacks.nvim", lazy=false, priority=1000, opts = { input = {}, picker = {}, terminal = {} } },
+    { "folke/snacks.nvim", lazy=false, priority=1000, opts = { 
+      input = {}, 
+      picker = {}, 
+      terminal = {},
+      notifier = {
+        enable = true,
+      }
+    } },
   },
   config = function()
     ---@type opencode.Opts
@@ -1005,11 +1012,13 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
+      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+      opts = {
+        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc',
+          'css', 'javascript', 'norg', 'scss', 'svelte', 'typescript', 'typst', 'vue'
+        },
+        -- Autoinstall languages that are not installed
+        auto_install = true,
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.

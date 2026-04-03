@@ -6,7 +6,7 @@
 -- Open terminal in bottom split on startup
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    -- Split window and open terminal
+    -- Create terminal window at bottom
     vim.cmd('split')
     vim.cmd('terminal')
     vim.cmd('wincmd j') -- Move to the new terminal window
