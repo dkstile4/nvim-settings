@@ -917,6 +917,83 @@ require('lazy').setup({
     end,
   },
 
+  { -- Diagnostics and symbols viewer
+    'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      -- Your trouble.nvim configuration
+    },
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble<cr>",
+        desc = "Open trouble diagnostics",
+      },
+      {
+        "<leader>xw",
+        "<cmd>Trouble workspace_diagnostics<cr>",
+        desc = "Open workspace diagnostics",
+      },
+      {
+        "<leader>xd",
+        "<cmd>Trouble document_diagnostics<cr>",
+        desc = "Open document diagnostics",
+      },
+      {
+        "<leader>xr",
+        "<cmd>Trouble references<cr>",
+        desc = "Open references",
+      },
+      {
+        "<leader>xl",
+        "<cmd>Trouble loclist<cr>",
+        desc = "Open location list",
+      },
+      {
+        "<leader>xq",
+        "<cmd>Trouble quickfix<cr>",
+        desc = "Open quickfix list",
+      },
+    },
+  },
+
+  { -- Obsidian notes integration
+    'epwalsh/obsidian.nvim',
+    version = '*', -- Recommended to always keep this at the latest version
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/Obsidian", -- Adjust this path to your Obsidian vault
+        },
+      },
+      -- Your obsidian.nvim configuration
+    },
+  },
+
+  { -- Zen mode for distraction-free coding
+    'folke/zen-mode.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      -- Your zen-mode.nvim configuration
+    },
+    keys = {
+      {
+        "<leader>z",
+        "<cmd>ZenMode<cr>",
+        desc = "Toggle zen mode",
+      },
+    },
+  },
+
   { -- Oil file explorer
     'stevearc/oil.nvim',
     opts = {},
